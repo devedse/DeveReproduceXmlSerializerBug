@@ -1,6 +1,10 @@
 name: GitHubActionsBuilds
 
-on: push
+on:
+  push:
+  schedule:
+    - cron: "1 4 * * *"
+
 
 jobs:
   generate_version_number:
