@@ -5,13 +5,11 @@ WORKDIR /app
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0-bullseye-slim-amd64 AS build
 WORKDIR /src
-COPY ["DeveReproduceXmlSerializerBug.ConsoleApp/DeveReproduceXmlSerializerBug.ConsoleApp.csproj", "DeveReproduceXmlSerializerBug.ConsoleApp/"]
-COPY ["DeveReproduceXmlSerializerBug/DeveReproduceXmlSerializerBug.csproj", "DeveReproduceXmlSerializerBug/"]
-RUN dotnet restore "DeveReproduceXmlSerializerBug.ConsoleApp/DeveReproduceXmlSerializerBug.ConsoleApp.csproj"
 COPY . .
+RUN dotnet restore "DeveReproduceXmlSerializerBug.ConsoleApp/DeveReproduceXmlSerializerBug.ConsoleApp.csproj"
 WORKDIR "/src/DeveReproduceXmlSerializerBug.ConsoleApp"
 RUN dotnet build "DeveReproduceXmlSerializerBug.ConsoleApp.csproj" -c Release -o /app/build
-RUN dotnet test "DeveReproduceXmlSerializerBug.Tests.csproj"
+RUN dotnet test
 
 FROM build AS publish
 ARG BUILD_VERSION
