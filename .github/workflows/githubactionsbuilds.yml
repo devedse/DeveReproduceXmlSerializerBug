@@ -38,7 +38,7 @@ jobs:
       run: |
         export VERSION=1.0.${{needs.generate_version_number.outputs.build_number}}
         echo Version: $VERSION
-        docker buildx build -f DeveReproduceXmlSerializerBug.ConsoleApp/Dockerfile --build-arg BUILD_VERSION=$VERSION --platform linux/arm,linux/arm64,linux/amd64 -t devedse/DeveReproduceXmlSerializerBugconsoleapp:${{needs.generate_version_number.outputs.build_number}} -t devedse/DeveReproduceXmlSerializerBugconsoleapp:latest .
+        docker buildx build -f DeveReproduceXmlSerializerBug.ConsoleApp/Dockerfile --build-arg BUILD_VERSION=$VERSION --platform linux/arm,linux/arm64,linux/amd64 -t devedse/devereproducexmlserializerbugconsoleapp:${{needs.generate_version_number.outputs.build_number}} -t devedse/DeveReproduceXmdevereproducexmlserializerbugconsoleapp:latest .
 
   
   build_linux_6_0_402:
