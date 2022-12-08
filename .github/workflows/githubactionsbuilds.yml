@@ -73,15 +73,15 @@ jobs:
     - name: dotnet test
       run: dotnet test DeveReproduceXmlSerializerBug.sln -c Release --no-build --verbosity normal
 
-  build_linux_6_0_x:
+  build_windows_6_0_402:
     needs: generate_version_number
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
     - uses: actions/checkout@v2
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 6.0.x
+        dotnet-version: 6.0.402
     - name: dotnet restore
       run: dotnet restore DeveReproduceXmlSerializerBug.sln
     - name: dotnet build
@@ -89,15 +89,15 @@ jobs:
     - name: dotnet test
       run: dotnet test DeveReproduceXmlSerializerBug.sln -c Release --no-build --verbosity normal
 
-  build_linux_6_x:
+  build_windows_6_0_403:
     needs: generate_version_number
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
     - uses: actions/checkout@v2
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 6.x
+        dotnet-version: 6.0.403
     - name: dotnet restore
       run: dotnet restore DeveReproduceXmlSerializerBug.sln
     - name: dotnet build
