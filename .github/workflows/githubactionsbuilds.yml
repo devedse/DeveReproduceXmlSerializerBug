@@ -89,6 +89,22 @@ jobs:
     - name: dotnet test
       run: dotnet test DeveReproduceXmlSerializerBug.sln -c Release --no-build --verbosity normal
 
+  build_linux_7_0_x:
+    needs: generate_version_number
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 7.0.x
+    - name: dotnet restore
+      run: dotnet restore DeveReproduceXmlSerializerBug.sln
+    - name: dotnet build
+      run: dotnet build DeveReproduceXmlSerializerBug.sln -c Release --no-restore /p:Version=1.0.${{needs.generate_version_number.outputs.build_number}}
+    - name: dotnet test
+      run: dotnet test DeveReproduceXmlSerializerBug.sln -c Release --no-build --verbosity normal
+
   build_windows_6_0_402:
     needs: generate_version_number
     runs-on: windows-latest
@@ -130,6 +146,22 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 6.0.x
+    - name: dotnet restore
+      run: dotnet restore DeveReproduceXmlSerializerBug.sln
+    - name: dotnet build
+      run: dotnet build DeveReproduceXmlSerializerBug.sln -c Release --no-restore /p:Version=1.0.${{needs.generate_version_number.outputs.build_number}}
+    - name: dotnet test
+      run: dotnet test DeveReproduceXmlSerializerBug.sln -c Release --no-build --verbosity normal
+
+  build_windows_7_0_x:
+    needs: generate_version_number
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 7.0.x
     - name: dotnet restore
       run: dotnet restore DeveReproduceXmlSerializerBug.sln
     - name: dotnet build
