@@ -41,7 +41,7 @@ jobs:
         docker buildx build -f DeveReproduceXmlSerializerBug.ConsoleApp/Dockerfile --build-arg BUILD_VERSION=$VERSION --platform linux/arm,linux/arm64,linux/amd64 -t devedse/DeveReproduceXmlSerializerBugconsoleapp:${{needs.generate_version_number.outputs.build_number}} -t devedse/DeveReproduceXmlSerializerBugconsoleapp:latest .
 
   
-  build_linux_402:
+  build_linux_6_0_402:
     needs: generate_version_number
     runs-on: ubuntu-latest
     steps:
@@ -57,7 +57,7 @@ jobs:
     - name: dotnet test
       run: dotnet test DeveReproduceXmlSerializerBug.sln -c Release --no-build --verbosity normal
 
-  build_linux_403:
+  build_linux_6_0_403:
     needs: generate_version_number
     runs-on: ubuntu-latest
     steps:
@@ -65,7 +65,39 @@ jobs:
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 6.0.402
+        dotnet-version: 6.0.403
+    - name: dotnet restore
+      run: dotnet restore DeveReproduceXmlSerializerBug.sln
+    - name: dotnet build
+      run: dotnet build DeveReproduceXmlSerializerBug.sln -c Release --no-restore /p:Version=1.0.${{needs.generate_version_number.outputs.build_number}}
+    - name: dotnet test
+      run: dotnet test DeveReproduceXmlSerializerBug.sln -c Release --no-build --verbosity normal
+
+  build_linux_6_0_x:
+    needs: generate_version_number
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 6.0.x
+    - name: dotnet restore
+      run: dotnet restore DeveReproduceXmlSerializerBug.sln
+    - name: dotnet build
+      run: dotnet build DeveReproduceXmlSerializerBug.sln -c Release --no-restore /p:Version=1.0.${{needs.generate_version_number.outputs.build_number}}
+    - name: dotnet test
+      run: dotnet test DeveReproduceXmlSerializerBug.sln -c Release --no-build --verbosity normal
+
+  build_linux_6_x:
+    needs: generate_version_number
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 6.x
     - name: dotnet restore
       run: dotnet restore DeveReproduceXmlSerializerBug.sln
     - name: dotnet build
