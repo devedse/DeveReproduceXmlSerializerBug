@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>net6.0</TargetFrameworks>
+		<AssemblyName>DeveReproduceXmlSerializerBug</AssemblyName>
+		<PackageId>DeveReproduceXmlSerializerBug</PackageId>
+		<Version>1.0.0.0</Version>
+		<Title>DeveReproduceXmlSerializerBug</Title>
+		<Authors>Devedse</Authors>
+		<Description>This is a library used in some of Devedse's projects. It contains helpers and other code stuff to build applications.</Description>
+		<PackageProjectUrl>https://github.com/devedse/DeveReproduceXmlSerializerBug</PackageProjectUrl>
+		<PackageTags>csharp;code;helpers</PackageTags>
+		<nullable>enable</nullable>
+
+		<!-- Optional: Publish the repository URL in the built .nupkg (in the NuSpec <Repository> element) -->
+		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+
+		<!-- Optional: Embed source files that are not tracked by the source control manager in the PDB -->
+		<EmbedUntrackedSources>false</EmbedUntrackedSources>
+
+		<!-- Optional: Build symbol package (.snupkg) to distribute the PDB containing Source Link -->
+		<IncludeSymbols>true</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+	</ItemGroup>
+
+</Project>

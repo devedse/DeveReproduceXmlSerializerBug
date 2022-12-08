@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "DeveReproduceXmlSerializerBug.ConsoleApp": {
+      "commandName": "Project"
+    },
+    "Docker": {
+      "commandName": "Docker"
+    }
+  }
+}
