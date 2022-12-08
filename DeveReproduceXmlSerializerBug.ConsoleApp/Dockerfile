@@ -11,6 +11,7 @@ RUN dotnet restore "DeveReproduceXmlSerializerBug.ConsoleApp/DeveReproduceXmlSer
 COPY . .
 WORKDIR "/src/DeveReproduceXmlSerializerBug.ConsoleApp"
 RUN dotnet build "DeveReproduceXmlSerializerBug.ConsoleApp.csproj" -c Release -o /app/build
+RUN dotnet test "DeveReproduceXmlSerializerBug.Tests.csproj"
 
 FROM build AS publish
 ARG BUILD_VERSION
