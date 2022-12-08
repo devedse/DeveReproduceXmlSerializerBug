@@ -175,17 +175,3 @@ jobs:
           ./artifacts/DeveReproduceXmlSerializerBugNuGet/*.snupkg
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-
-  release_nuget:
-    needs: [generate_version_number, intellicode, build_windows, build_linux, build_docker, release_github]
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/master'
-    steps:
-    - name: Download all artifacts
-      uses: actions/download-artifact@v2
-      with:
-        name: DeveReproduceXmlSerializerBugNuGet
-        path: ./artifacts/DeveReproduceXmlSerializerBugNuGet/
-    - name: Push NuGet
-      run: dotnet nuget push ./artifacts/DeveReproduceXmlSerializerBugNuGet/DeveReproduceXmlSerializerBug.1.0.${{needs.generate_version_number.outputs.build_number}}.nupkg -k ${{ secrets.NUGETTOKEN }} -s https://api.nuget.org/v3/index.json
